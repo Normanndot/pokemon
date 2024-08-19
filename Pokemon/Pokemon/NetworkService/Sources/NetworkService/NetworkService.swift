@@ -1,10 +1,5 @@
-//
-//  NetworkService.swift
-//  Pokemon
-//
-//  Created by Norman D on 19/08/2024.
-//
-
+// The Swift Programming Language
+// https://docs.swift.org/swift-book
 import Foundation
 
 public protocol NetworkServiceable {
@@ -13,12 +8,18 @@ public protocol NetworkServiceable {
     ) async throws -> T
 }
 
+public protocol URLSessionProtocol {
+    func data(for request: URLRequest) async throws -> (Data, URLResponse)
+}
+
+extension URLSession: URLSessionProtocol { }
+
 public class NetworkService: NetworkServiceable {
-    private let session: URLSession
+    private let session: URLSessionProtocol
     private let decoder: JSONDecoder
     
     public init(
-        session: URLSession = .shared,
+        session: URLSessionProtocol = URLSession.shared,
         decoder: JSONDecoder = JSONDecoder()
     ) {
         self.session = session
@@ -65,7 +66,7 @@ public class NetworkService: NetworkServiceable {
             }
             
             let error = error as NSError
-            if error.domain == NSURLErrorDomain, 
+            if error.domain == NSURLErrorDomain,
                 error.code == NSURLErrorNotConnectedToInternet {
                 throw RequestError.noNetwork
             } else {

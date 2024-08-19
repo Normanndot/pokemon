@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import NetworkService
 
 struct BaseURL {
     static let url: String = "https://pokeapi.co/api/v2/pokemon/"

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import NetworkService
 
 protocol PokemonDetailing {
     func fetchPokemonDetails(for pokemonName: String) async throws -> PokemonDetails

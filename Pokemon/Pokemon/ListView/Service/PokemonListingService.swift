@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import NetworkService
 
 protocol PokemonListing {
     func fetchPokemonList() async throws -> PokemonResponse
