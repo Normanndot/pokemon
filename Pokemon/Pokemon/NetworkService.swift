@@ -40,6 +40,14 @@ public class NetworkService: NetworkServiceable {
                 throw RequestError.invalidURL
             }
             
+            switch response.statusCode {
+            case 200...299: break
+            case 300...399: throw RequestError.redirection
+            case 400...499: throw RequestError.clientError
+            case 500...599: throw RequestError.serverError
+            default: throw RequestError.unExpectedStatusCode
+            }
+            
             guard let decodedResponse = try? decoder.decode(
                 request.responseType,
                 from: data

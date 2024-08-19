@@ -12,4 +12,8 @@ public enum RequestError: Error {
     case invalidURL
     case unKnown
     case noNetwork
+    case redirection
+    case clientError
+    case serverError
+    case unExpectedStatusCode
 }
