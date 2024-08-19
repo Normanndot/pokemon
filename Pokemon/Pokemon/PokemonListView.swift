@@ -16,14 +16,18 @@ struct PokemonListView: View {
                 SearchBar(text: $viewModel.searchText, placeholder: "Search Pokèmon")
                 List {
                     ForEach(viewModel.filteredPokemons) { aPokemon in
-                        PokemonRow(pokemon: aPokemon)
-                            .onAppear {
-                                if aPokemon == viewModel.pokemons.last {
-                                    Task {
-                                        await viewModel.fetchNextSetOfPokemons()
+                        NavigationLink {
+                            PokemonDetailView(pokemon: aPokemon)
+                        } label: {
+                            PokemonRow(pokemon: aPokemon)
+                                .onAppear {
+                                    if aPokemon == viewModel.pokemons.last {
+                                        Task {
+                                            await viewModel.fetchNextSetOfPokemons()
+                                        }
                                     }
                                 }
-                            }
+                        }
                     }
                     
                     if viewModel.isLoading {
