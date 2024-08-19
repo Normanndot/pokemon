@@ -8,14 +8,13 @@
 import Foundation
 
 struct BaseURL {
-    static let url: String = "https://pokeapi.co/api/v2/"
+    static let url: String = "https://pokeapi.co/api/v2/pokemon"
 }
 
 struct Requests {
     static func initialList() -> Request<PokemonResponse> {
         .init(
             url: .init(
-                path: "pokemon",
                 queryItems: [
                     URLQueryItem(
                         name: "limit",
@@ -37,16 +36,8 @@ struct Requests {
 }
 
 extension URL {
-    init?(path: String) {
+    init?(queryItems: [URLQueryItem] = []) {
         guard var urlComponents = URLComponents(string: BaseURL.url) else { return nil }
-        urlComponents.path = path
-        guard let url = urlComponents.url else { return nil }
-        self = url
-    }
-    
-    init?(path: String, queryItems: [URLQueryItem] = []) {
-        guard var urlComponents = URLComponents(string: BaseURL.url) else { return nil }
-        urlComponents.path = path
         urlComponents.queryItems = queryItems
         guard let url = urlComponents.url else { return nil }
         self = url

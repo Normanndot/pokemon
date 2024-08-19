@@ -23,6 +23,7 @@
 		A37C730C2C73817B00F3B214 /* PokemonListingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37C730B2C73817B00F3B214 /* PokemonListingService.swift */; };
 		A37C730E2C7381A700F3B214 /* PokemonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37C730D2C7381A700F3B214 /* PokemonResponse.swift */; };
 		A37C73102C7381C200F3B214 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37C730F2C7381C200F3B214 /* Pokemon.swift */; };
+		A37C73142C7390FD00F3B214 /* PokemonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37C73132C7390FD00F3B214 /* PokemonRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		A37C730B2C73817B00F3B214 /* PokemonListingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListingService.swift; sourceTree = "<group>"; };
 		A37C730D2C7381A700F3B214 /* PokemonResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonResponse.swift; sourceTree = "<group>"; };
 		A37C730F2C7381C200F3B214 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		A37C73132C7390FD00F3B214 /* PokemonRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			children = (
 				A37C72D32C73575800F3B214 /* PokemonApp.swift */,
 				A37C73052C735EFD00F3B214 /* PokemonListView.swift */,
+				A37C73132C7390FD00F3B214 /* PokemonRow.swift */,
 				A37C73072C73636200F3B214 /* PokemonListViewModel.swift */,
 				A37C730D2C7381A700F3B214 /* PokemonResponse.swift */,
 				A37C730F2C7381C200F3B214 /* Pokemon.swift */,
@@ -292,6 +295,7 @@
 				A37C730A2C736B0D00F3B214 /* Requests.swift in Sources */,
 				A37C73102C7381C200F3B214 /* Pokemon.swift in Sources */,
 				A37C730C2C73817B00F3B214 /* PokemonListingService.swift in Sources */,
+				A37C73142C7390FD00F3B214 /* PokemonRow.swift in Sources */,
 				A37C73062C735EFD00F3B214 /* PokemonListView.swift in Sources */,
 				A37C730E2C7381A700F3B214 /* PokemonResponse.swift in Sources */,
 				A37C72D42C73575800F3B214 /* PokemonApp.swift in Sources */,

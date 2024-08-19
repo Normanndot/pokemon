@@ -8,11 +8,32 @@
 import SwiftUI
 
 struct PokemonListView: View {
+    @Environment(PokemonListViewModel.self) private var viewModel
+    
     var body: some View {
-        Text("Hello, World!")
+        NavigationStack {
+            List {
+                ForEach(viewModel.pokemons) { aPokemon in
+                    PokemonRow(pokemon: aPokemon)
+                        .onAppear {
+                            if aPokemon == viewModel.pokemons.last {
+                                Task {
+                                    await viewModel.fetchNextSetOfPokemons()
+                                }
+                            }
+                        }
+                }
+                
+                if viewModel.isLoading {
+                    ProgressView()
+                        .foregroundStyle(.black)
+                        .padding()
+                }
+            }
+            .navigationTitle("Pokèmon")
+        }
+        .task {
+            await viewModel.fetchInitialList()
+        }
     }
-}
-
-#Preview {
-    PokemonListView()
 }
