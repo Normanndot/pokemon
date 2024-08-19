@@ -9,13 +9,13 @@ import SwiftUI
 
 @main
 struct PokemonApp: App {
-    @StateObject private var listingViewModel = PokemonListViewModel()
+    @StateObject private var listViewModel = PokemonListViewModel()
     @State private var detailsViewModel = PokemonDetailViewModel()
     
     var body: some Scene {
         WindowGroup {
             PokemonListView()
-                .environmentObject(listingViewModel)
+                .environmentObject(listViewModel)
                 .environment(detailsViewModel)
         }
     }

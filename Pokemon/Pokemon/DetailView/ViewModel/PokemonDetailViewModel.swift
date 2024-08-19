@@ -23,6 +23,5 @@ class PokemonDetailViewModel {
         } catch {
             
         }
-        
     }
 }

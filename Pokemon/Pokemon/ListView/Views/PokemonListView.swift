@@ -20,20 +20,7 @@ struct PokemonListView: View {
                             PokemonDetailView(pokemon: aPokemon)
                         } label: {
                             PokemonRow(pokemon: aPokemon)
-                                .onAppear {
-                                    if aPokemon == viewModel.pokemons.last {
-                                        Task {
-                                            await viewModel.fetchNextSetOfPokemons()
-                                        }
-                                    }
-                                }
                         }
-                    }
-                    
-                    if viewModel.isLoading {
-                        ProgressView()
-                            .foregroundStyle(.black)
-                            .padding()
                     }
                 }
             }

@@ -1,29 +1,11 @@
 //
-//  PokemonDetails.swift
+//  PokemonSprites.swift
 //  Pokemon
 //
 //  Created by Norman D on 19/08/2024.
 //
 
 import Foundation
-
-struct PokemonDetails: Decodable {
-    let id: Int
-    let name: String
-    let height: Int
-    let weight: Int
-    let types: [PokemonType]
-    let sprites: PokemonSprites
-    let stats: [PokemonStat]
-}
-
-struct PokemonType: Decodable {
-    let type: PokemonTypeName
-}
-
-struct PokemonTypeName: Decodable {
-    let name: String
-}
 
 struct PokemonSprites: Decodable {
     let backDefault: URL?
@@ -45,18 +27,4 @@ struct PokemonSprites: Decodable {
         case frontShiny = "front_shiny"
         case frontShinyFemale = "front_shiny_female"
     }
-}
-
-struct PokemonStat: Decodable {
-    let baseStat: Int
-    let stat: StatName
-    
-    enum CodingKeys: String, CodingKey {
-        case baseStat = "base_stat"
-        case stat
-    }
-}
-
-struct StatName: Decodable {
-    let name: String
 }
