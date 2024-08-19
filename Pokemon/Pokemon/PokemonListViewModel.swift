@@ -40,6 +40,7 @@ class PokemonListViewModel {
         Task {
             do {
                 let response = try await service.fetchNextSetOfPokemonList(for: pokemonResponse?.next)
+                pokemonResponse = response
                 pokemons.append(contentsOf: response.results)
                 isLoading = false
             } catch {
@@ -47,44 +48,4 @@ class PokemonListViewModel {
             }
         }
     }
-}
-
-protocol PokemonListing {
-    func fetchPokemonList() async throws -> PokemonResponse
-    func fetchNextSetOfPokemonList(for urlString: String?) async throws -> PokemonResponse
-}
-
-class PokemonListingService: PokemonListing {
-    private let service: NetworkService
-
-    init(service: NetworkService = NetworkService()) {
-        self.service = service
-    }
-
-    func fetchPokemonList() async throws -> PokemonResponse {
-        try await service.fetch(request: Requests.initialList())
-    }
-    
-    func fetchNextSetOfPokemonList(for urlString: String?) async throws -> PokemonResponse {
-        guard let urlString, let url = URL(string: urlString) else {
-            throw RequestError.invalidURL
-        }
-        
-        return try await service.fetch(request: Requests.nextSetOfPokemons(for: url))
-
-    }
-}
-
-
-struct PokemonResponse: Decodable {
-    let count: Int
-    let next: String?
-    let previous: String?
-    let results: [Pokemon]
-}
-
-struct Pokemon: Decodable, Identifiable {
-    let id = UUID()
-    let name: String
-    let url: String
 }
