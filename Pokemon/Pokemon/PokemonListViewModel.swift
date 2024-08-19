@@ -7,17 +7,30 @@
 
 import Foundation
 
-@Observable
-class PokemonListViewModel {
-    var pokemons: [Pokemon] = []
-    var isLoading: Bool = false
-    
+@MainActor
+class PokemonListViewModel: ObservableObject {
+    @Published var pokemons: [Pokemon] = []
+    @Published var isLoading: Bool = false
+    @Published var searchText: String = ""
+
     private let service: PokemonListing
     private var pokemonResponse: PokemonResponse?
     
     init(service: PokemonListing = PokemonListingService()) {
         self.service = service
     }
+    
+    var filteredPokemons: [Pokemon] {
+            if searchText.isEmpty {
+                return pokemons
+            } else {
+                return pokemons.filter {
+                    $0.name.lowercased().contains(
+                        searchText.lowercased()
+                    )
+                }
+            }
+        }
     
     func fetchInitialList() async {
         isLoading = true

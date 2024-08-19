@@ -8,26 +8,29 @@
 import SwiftUI
 
 struct PokemonListView: View {
-    @Environment(PokemonListViewModel.self) private var viewModel
+    @EnvironmentObject var viewModel: PokemonListViewModel
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(viewModel.pokemons) { aPokemon in
-                    PokemonRow(pokemon: aPokemon)
-                        .onAppear {
-                            if aPokemon == viewModel.pokemons.last {
-                                Task {
-                                    await viewModel.fetchNextSetOfPokemons()
+            VStack {
+                SearchBar(text: $viewModel.searchText, placeholder: "Search Pokèmon")
+                List {
+                    ForEach(viewModel.filteredPokemons) { aPokemon in
+                        PokemonRow(pokemon: aPokemon)
+                            .onAppear {
+                                if aPokemon == viewModel.pokemons.last {
+                                    Task {
+                                        await viewModel.fetchNextSetOfPokemons()
+                                    }
                                 }
                             }
-                        }
-                }
-                
-                if viewModel.isLoading {
-                    ProgressView()
-                        .foregroundStyle(.black)
-                        .padding()
+                    }
+                    
+                    if viewModel.isLoading {
+                        ProgressView()
+                            .foregroundStyle(.black)
+                            .padding()
+                    }
                 }
             }
             .navigationTitle("Pokèmon")
