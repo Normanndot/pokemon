@@ -24,10 +24,9 @@ final class EncodableTests: XCTestCase {
         ///Assert
         XCTAssertNotNil(data)
         
-        // Decode the data back to a TestModel instance
         let decodedModel = try? JSONDecoder().decode(TestModel.self, from: data!)
         
-        // Assert that the decoded model matches the original model
+        ///Assert
         XCTAssertEqual(decodedModel, model)
     }
 }

@@ -10,10 +10,15 @@ import Foundation
 final class PokemonListViewModel: ObservableObject {
     @Published private(set) var pokemons: [Pokemon] = []
     @Published var searchText: String = ""
-    
+    @Published private(set) var fetchingPokemonList = FetchingPokemonList.inProgress
+
     private let service: PokemonListing
     private var pokemonResponse: PokemonResponse?
-    
+
+    enum FetchingPokemonList {
+        case inProgress, completed, failed
+    }
+
     init(service: PokemonListing = PokemonListingService()) {
         self.service = service
     }
@@ -36,10 +41,10 @@ final class PokemonListViewModel: ObservableObject {
             await MainActor.run {
                 self.pokemonResponse = response
                 self.pokemons = response.results
+                fetchingPokemonList = .completed
             }
         } catch {
-            // Handle error appropriately
-            print("Failed to fetch initial list: \(error)")
+            fetchingPokemonList = .failed
         }
     }
     
@@ -52,7 +57,6 @@ final class PokemonListViewModel: ObservableObject {
                 self.pokemons.append(contentsOf: response.results)
             }
         } catch {
-            // Handle error appropriately
             print("Failed to fetch next set of pokemons: \(error)")
         }
     }

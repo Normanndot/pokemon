@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import NetworkService
 @testable import Pokemon
 
 final class PokemonDetailViewModelTests: XCTestCase {
@@ -29,6 +28,7 @@ final class PokemonDetailViewModelTests: XCTestCase {
         await viewModel.fetchPokemonDetails(name: "pikachu")
         
         // Then
+        XCTAssertEqual(viewModel.fetchingPokemonDetails, .completed)
         XCTAssertEqual(viewModel.pokemonDetails?.id, expectedDetails.id)
         XCTAssertEqual(viewModel.pokemonDetails?.name, expectedDetails.name)
         XCTAssertEqual(viewModel.pokemonDetails?.height, expectedDetails.height)
@@ -37,7 +37,7 @@ final class PokemonDetailViewModelTests: XCTestCase {
     
     func testFetchPokemonDetailsFailure() async {
         // Given
-        let expectedError = RequestError.noNetwork
+        let expectedError = NSError(domain: "TestError", code: 1, userInfo: nil)
         mockDetailing.result = .failure(expectedError)
         
         // When
@@ -45,5 +45,13 @@ final class PokemonDetailViewModelTests: XCTestCase {
         
         // Then
         XCTAssertNil(viewModel.pokemonDetails)
+        XCTAssertEqual(viewModel.fetchingPokemonDetails, .failed)
+    }
+    
+    func testFetchingPokemonDetailsStateInitiallyInProgress() {
+        // Given
+        // Then
+        // Assert
+        XCTAssertEqual(viewModel.fetchingPokemonDetails, .inProgress)
     }
 }

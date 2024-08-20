@@ -9,9 +9,13 @@ import Foundation
 
 @Observable
 final class PokemonDetailViewModel {
-    var pokemonDetails: PokemonDetails?
-    
     private let service: PokemonDetailing
+    private(set) var pokemonDetails: PokemonDetails?
+    private(set) var fetchingPokemonDetails = FetchingPokemonDetails.inProgress
+
+    enum FetchingPokemonDetails {
+        case inProgress, completed, failed
+    }
     
     init(service: PokemonDetailing = PokemonDetailService()) {
         self.service = service
@@ -20,8 +24,9 @@ final class PokemonDetailViewModel {
     func fetchPokemonDetails(name: String) async {
         do {
             pokemonDetails = try await service.fetchPokemonDetails(for: name)
+            fetchingPokemonDetails = .completed
         } catch {
-            
+            fetchingPokemonDetails = .failed
         }
     }
 }

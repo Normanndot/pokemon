@@ -160,7 +160,7 @@ final class NetworkServiceTests: XCTestCase {
     func testFetchEmptyData() async throws {
         ///Arrange
         let session = URLSessionMock()
-        session.nextData = Data() // Empty data
+        session.nextData = Data()
         session.nextResponse = HTTPURLResponse(
             url: URL(string: "https://example.com")!,
             statusCode: 200,

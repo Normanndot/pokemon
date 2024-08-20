@@ -11,26 +11,36 @@ struct PokemonListView: View {
     @EnvironmentObject var viewModel: PokemonListViewModel
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                SearchBar(
-                    text: $viewModel.searchText,
-                    placeholder: "Search Pokèmon"
-                )
-                List {
-                    ForEach(viewModel.filteredPokemons) { aPokemon in
-                        NavigationLink {
-                            PokemonDetailView(pokemon: aPokemon)
-                        } label: {
-                            PokemonRow(pokemon: aPokemon)
+        switch viewModel.fetchingPokemonList {
+        case .inProgress:
+            ProgressView("Hold on, we're almost there!")
+                .task {
+                    await viewModel.fetchInitialList()
+                }
+        case .completed:
+            NavigationStack {
+                VStack {
+                    SearchBar(
+                        text: $viewModel.searchText,
+                        placeholder: "Search Pokèmon"
+                    )
+                    List {
+                        ForEach(viewModel.filteredPokemons) { aPokemon in
+                            NavigationLink {
+                                PokemonDetailView(pokemon: aPokemon)
+                            } label: {
+                                PokemonRow(pokemon: aPokemon)
+                            }
                         }
                     }
                 }
+                .navigationTitle("Pokèmon")
             }
-            .navigationTitle("Pokèmon")
-        }
-        .task {
-            await viewModel.fetchInitialList()
+        case .failed:
+            ContentUnavailableView(
+                "Internet's napping! \nTry a quick toggle.",
+                systemImage: "icloud.slash"
+            )
         }
     }
 }

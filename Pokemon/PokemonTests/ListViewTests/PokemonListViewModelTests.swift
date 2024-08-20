@@ -38,6 +38,7 @@ final class PokemonListViewModelTests: XCTestCase {
         
         // Then
         XCTAssertEqual(viewModel.pokemons, mockPokemons)
+        XCTAssertEqual(viewModel.fetchingPokemonList, .completed)
     }
     
     func testFetchInitialListFailure() async {
@@ -49,6 +50,7 @@ final class PokemonListViewModelTests: XCTestCase {
         
         // Then
         XCTAssertTrue(viewModel.pokemons.isEmpty)
+        XCTAssertEqual(viewModel.fetchingPokemonList, .failed)
     }
     
     func testFilteredPokemonsWithSearchText() async {
@@ -99,6 +101,6 @@ final class PokemonListViewModelTests: XCTestCase {
         await viewModel.fetchNextSetOfPokemons()
         
         // Then
-        XCTAssertEqual(viewModel.pokemons.count, 1) // No new pokemons should be added
+        XCTAssertEqual(viewModel.pokemons.count, 1)
     }
 }
