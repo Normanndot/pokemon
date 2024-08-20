@@ -13,7 +13,10 @@ struct PokemonListView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                SearchBar(text: $viewModel.searchText, placeholder: "Search Pokèmon")
+                SearchBar(
+                    text: $viewModel.searchText,
+                    placeholder: "Search Pokèmon"
+                )
                 List {
                     ForEach(viewModel.filteredPokemons) { aPokemon in
                         NavigationLink {

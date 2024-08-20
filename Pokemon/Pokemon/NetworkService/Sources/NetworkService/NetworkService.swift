@@ -14,7 +14,7 @@ public protocol URLSessionProtocol {
 
 extension URLSession: URLSessionProtocol { }
 
-public class NetworkService: NetworkServiceable {
+open class NetworkService: NetworkServiceable {
     private let session: URLSessionProtocol
     private let decoder: JSONDecoder
     

@@ -14,9 +14,9 @@ protocol PokemonListing {
 }
 
 class PokemonListingService: PokemonListing {
-    private let service: NetworkService
+    private let service: NetworkServiceable
 
-    init(service: NetworkService = NetworkService()) {
+    init(service: NetworkServiceable = NetworkService()) {
         self.service = service
     }
 

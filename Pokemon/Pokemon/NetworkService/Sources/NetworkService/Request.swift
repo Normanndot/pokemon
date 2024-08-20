@@ -8,8 +8,8 @@
 import Foundation
 
 public struct Request<T: Decodable> {
-    let request: URLRequest
-    let responseType: T.Type
+    public let request: URLRequest
+    public let responseType: T.Type
     
     public init(
         url: URL,

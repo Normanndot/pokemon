@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PokemonResponse: Decodable {
+struct PokemonResponse: Codable {
     let count: Int
     let next: String?
     let previous: String?
