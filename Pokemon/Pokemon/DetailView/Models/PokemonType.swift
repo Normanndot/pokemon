@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct PokemonType: Decodable {
+struct PokemonType: Codable {
     let type: PokemonTypeName
 }
 
-struct PokemonTypeName: Decodable {
+struct PokemonTypeName: Codable {
     let name: String
 }

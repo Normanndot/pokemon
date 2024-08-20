@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PokemonSprites: Decodable {
+struct PokemonSprites: Codable {
     let backDefault: URL?
     let backFemale: URL?
     let backShiny: URL?

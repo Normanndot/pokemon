@@ -8,7 +8,7 @@
 import Foundation
 @testable import NetworkService
 
-class URLSessionMock: URLSessionProtocol {
+final class URLSessionMock: URLSessionProtocol {
     var nextData: Data?
     var nextResponse: URLResponse?
     var nextError: Error?

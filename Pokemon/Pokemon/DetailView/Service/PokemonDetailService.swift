@@ -12,10 +12,10 @@ protocol PokemonDetailing {
     func fetchPokemonDetails(for pokemonName: String) async throws -> PokemonDetails
 }
 
-class PokemonDetailService: PokemonDetailing {
-    private let service: NetworkService
+final class PokemonDetailService: PokemonDetailing {
+    private let service: NetworkServiceable
 
-    init(service: NetworkService = NetworkService()) {
+    init(service: NetworkServiceable = NetworkService()) {
         self.service = service
     }
     

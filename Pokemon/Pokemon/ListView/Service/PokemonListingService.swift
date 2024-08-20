@@ -13,7 +13,7 @@ protocol PokemonListing {
     func fetchNextSetOfPokemonList(for urlString: String?) async throws -> PokemonResponse
 }
 
-class PokemonListingService: PokemonListing {
+final class PokemonListingService: PokemonListing {
     private let service: NetworkServiceable
 
     init(service: NetworkServiceable = NetworkService()) {

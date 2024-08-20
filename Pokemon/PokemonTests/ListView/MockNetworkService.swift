@@ -8,7 +8,7 @@
 import Foundation
 import NetworkService
 
-class MockNetworkService: NetworkServiceable {
+final class MockNetworkService: NetworkServiceable {
     var result: Result<Data, RequestError>!
     
     func fetch<T>(request: Request<T>) async throws -> T where T: Decodable {

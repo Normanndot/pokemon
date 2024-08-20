@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable
-class PokemonDetailViewModel {
+final class PokemonDetailViewModel {
     var pokemonDetails: PokemonDetails?
     
     private let service: PokemonDetailing
