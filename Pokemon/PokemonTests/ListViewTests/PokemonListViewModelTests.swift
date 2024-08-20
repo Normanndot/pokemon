@@ -29,78 +29,78 @@ final class PokemonListViewModelTests: XCTestCase {
     }
     
     func testFetchInitialListSuccess() async {
-        // Given
+        ///Given
         let mockPokemons = [Pokemon(name: "Pikachu", url: .sampleURL), Pokemon(name: "Bulbasaur", url: .sampleURL)]
         mockService.mockResponse = PokemonResponse(count: 2, next: nil, previous: nil, results: mockPokemons)
         
-        // When
+        ///When
         await viewModel.fetchInitialList()
         
-        // Then
+        ///Then
         XCTAssertEqual(viewModel.pokemons, mockPokemons)
         XCTAssertEqual(viewModel.fetchingPokemonList, .completed)
     }
     
     func testFetchInitialListFailure() async {
-        // Given
+        ///Given
         mockService.shouldReturnError = true
         
-        // When
+        ///When
         await viewModel.fetchInitialList()
         
-        // Then
+        ///Then
         XCTAssertTrue(viewModel.pokemons.isEmpty)
         XCTAssertEqual(viewModel.fetchingPokemonList, .failed)
     }
     
     func testFilteredPokemonsWithSearchText() async {
-        // Given
-        let pokemons = [Pokemon(name: "Pikachu", url: "url1"), Pokemon(name: "Bulbasaur", url: "url2")]
+        ///Given
+        let pokemons = [Pokemon(name: "Pikachu", url: .sampleURL), Pokemon(name: "Bulbasaur", url: .sampleURL)]
         mockService.mockResponse = PokemonResponse(count: 2, next: nil, previous: nil, results: pokemons)
         await viewModel.fetchInitialList()
 
         viewModel.searchText = "pik"
         
-        // When
+        ///When
         let filteredPokemons = viewModel.filteredPokemons
         
-        // Then
+        ///Then
         XCTAssertEqual(filteredPokemons, [pokemons[0]])
     }
     
     func testFetchNextSetOfPokemonsSuccess() async {
-        // Given
-        let initialPokemons = [Pokemon(name: "Pikachu", url: "url1")]
+        ///Given
+        let initialPokemons = [Pokemon(name: "Pikachu", url: .sampleURL)]
         mockService.mockResponse = PokemonResponse(count: 1, next: .sampleURL, previous: nil, results: initialPokemons)
         
-        // When
+        ///When
         await viewModel.fetchInitialList()
 
-        // Then
+        ///Then
         XCTAssertEqual(viewModel.pokemons, initialPokemons)
         
-        // Given
-        let nextPokemons = [Pokemon(name: "Bulbasaur", url: "url2")]
+        ///Given
+        let nextPokemons = [Pokemon(name: "Bulbasaur", url: .sampleURL)]
         mockService.mockResponse = PokemonResponse(count: 1, next: nil, previous: nil, results: nextPokemons)
         
-        // When
+        ///When
         await viewModel.fetchNextSetOfPokemons()
         
-        // Then
+        ///Then
         XCTAssertEqual(viewModel.pokemons, initialPokemons + nextPokemons)
     }
     
     func testFetchNextSetOfPokemonsFailure() async {
-        // Given
-        let initialPokemons = [Pokemon(name: "Pikachu", url: "url1")]
+        ///Given
+        let initialPokemons = [Pokemon(name: "Pikachu", url: .sampleURL)]
         mockService.mockResponse = PokemonResponse(count: 1, next: .sampleURL, previous: nil, results: initialPokemons)
         await viewModel.fetchInitialList()
 
-        // When
+        ///When
         mockService.shouldReturnError = true
         await viewModel.fetchNextSetOfPokemons()
         
-        // Then
+        ///Then
         XCTAssertEqual(viewModel.pokemons.count, 1)
     }
 }

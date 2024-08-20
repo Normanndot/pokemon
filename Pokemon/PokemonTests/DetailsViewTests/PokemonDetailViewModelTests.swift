@@ -20,14 +20,14 @@ final class PokemonDetailViewModelTests: XCTestCase {
     }
     
     func testFetchPokemonDetailsSuccess() async {
-        // Given
+        ///Given
         let expectedDetails = PokemonDetails.mock
         mockDetailing.result = .success(expectedDetails)
         
-        // When
+        ///When
         await viewModel.fetchPokemonDetails(name: "pikachu")
         
-        // Then
+        ///Then
         XCTAssertEqual(viewModel.fetchingPokemonDetails, .completed)
         XCTAssertEqual(viewModel.pokemonDetails?.id, expectedDetails.id)
         XCTAssertEqual(viewModel.pokemonDetails?.name, expectedDetails.name)
@@ -36,22 +36,21 @@ final class PokemonDetailViewModelTests: XCTestCase {
     }
     
     func testFetchPokemonDetailsFailure() async {
-        // Given
+        ///Given
         let expectedError = NSError(domain: "TestError", code: 1, userInfo: nil)
         mockDetailing.result = .failure(expectedError)
         
-        // When
+        ///When
         await viewModel.fetchPokemonDetails(name: "pikachu")
         
-        // Then
+        ///Then
         XCTAssertNil(viewModel.pokemonDetails)
         XCTAssertEqual(viewModel.fetchingPokemonDetails, .failed)
     }
     
     func testFetchingPokemonDetailsStateInitiallyInProgress() {
-        // Given
-        // Then
-        // Assert
+        ///Given
+        ///Then
         XCTAssertEqual(viewModel.fetchingPokemonDetails, .inProgress)
     }
 }

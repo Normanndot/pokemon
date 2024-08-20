@@ -21,15 +21,15 @@ final class PokemonDetailServiceTests: XCTestCase {
     }
     
     func testFetchPokemonDetailsSuccess() async throws {
-        // Given
+        ///Arrange
         let expectedDetails = PokemonDetails.mock
         let mockData = PokemonDetails.mockData
         mockNetworkService.result = .success(mockData)
 
-        // When
+        //Act
         let details = try await service.fetchPokemonDetails(for: "pikachu")
         
-        // Then
+        //Assert
         XCTAssertEqual(details.id, expectedDetails.id)
         XCTAssertEqual(details.name, expectedDetails.name)
         XCTAssertEqual(details.height, expectedDetails.height)
@@ -37,16 +37,16 @@ final class PokemonDetailServiceTests: XCTestCase {
     }
     
     func testFetchPokemonDetailsFailure() async {
-        // Given
+        ///Arrange
         let expectedError = RequestError.noNetwork
         mockNetworkService.result = .failure(expectedError)
         
-        // When
+        ///Act
         do {
             _ = try await service.fetchPokemonDetails(for: "pikachu")
             XCTFail("Expected error not thrown")
         } catch {
-            // Then
+            ///Assert
             XCTAssertEqual(error as? RequestError, expectedError)
         }
     }

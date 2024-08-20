@@ -122,6 +122,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A35F1E1F2C7507CE00FB1521 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				A37C73402C73EDBE00F3B214 /* MockPokemonListingService.swift */,
+				A37C73442C74BBF100F3B214 /* MockNetworkService.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		A35F1E202C7507DF00FB1521 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				A37C734C2C74C8B100F3B214 /* PokemonDetails+Ext.swift */,
+				A37C734A2C74C88800F3B214 /* MockPokemonDetailing.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		A37C72C72C73575800F3B214 = {
 			isa = PBXGroup;
 			children = (
@@ -288,10 +306,9 @@
 		A37C733D2C73ED9200F3B214 /* ListViewTests */ = {
 			isa = PBXGroup;
 			children = (
+				A35F1E1F2C7507CE00FB1521 /* Mocks */,
 				A37C733E2C73EDA200F3B214 /* PokemonListViewModelTests.swift */,
-				A37C73402C73EDBE00F3B214 /* MockPokemonListingService.swift */,
 				A37C73422C74B8D200F3B214 /* PokemonListingServiceTests.swift */,
-				A37C73442C74BBF100F3B214 /* MockNetworkService.swift */,
 			);
 			path = ListViewTests;
 			sourceTree = "<group>";
@@ -299,10 +316,9 @@
 		A37C734E2C74DCA900F3B214 /* DetailsViewTests */ = {
 			isa = PBXGroup;
 			children = (
-				A37C734C2C74C8B100F3B214 /* PokemonDetails+Ext.swift */,
-				A37C734A2C74C88800F3B214 /* MockPokemonDetailing.swift */,
-				A37C73462C74BEC100F3B214 /* PokemonDetailServiceTests.swift */,
+				A35F1E202C7507DF00FB1521 /* Mocks */,
 				A37C73482C74C7ED00F3B214 /* PokemonDetailViewModelTests.swift */,
+				A37C73462C74BEC100F3B214 /* PokemonDetailServiceTests.swift */,
 			);
 			path = DetailsViewTests;
 			sourceTree = "<group>";
