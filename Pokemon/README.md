@@ -6,6 +6,7 @@
 -- Xcode Version: 15.3
 -- SwiftUI, MVVM, XCTest 
 -- Open the app in xcode and build the app.
+-- This code will run in Swift 6 without any errors and warnings.
 
 ## Design Pattern
 -- I choose MVVM as a Design pattern for this App. 
