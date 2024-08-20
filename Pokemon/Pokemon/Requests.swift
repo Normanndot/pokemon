@@ -39,19 +39,3 @@ struct Requests {
         .init(url: .init(path: "\(name)")!, httpMethod: .get)
     }
 }
-
-extension URL {
-    init?(path: String) {
-        guard var urlComponents = URLComponents(string: BaseURL.url) else { return nil }
-        urlComponents.path.append(path)
-        guard let url = urlComponents.url else { return nil }
-        self = url
-    }
-    
-    init?(queryItems: [URLQueryItem] = []) {
-        guard var urlComponents = URLComponents(string: BaseURL.url) else { return nil }
-        urlComponents.queryItems = queryItems
-        guard let url = urlComponents.url else { return nil }
-        self = url
-    }
-}

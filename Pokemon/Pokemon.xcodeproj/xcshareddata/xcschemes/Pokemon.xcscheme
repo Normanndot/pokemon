@@ -51,14 +51,6 @@
                BlueprintName = "PokemonUITests"
                ReferencedContainer = "container:Pokemon.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "PokemonUITests">
-               </Test>
-               <Test
-                  Identifier = "PokemonUITestsLaunchTests">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

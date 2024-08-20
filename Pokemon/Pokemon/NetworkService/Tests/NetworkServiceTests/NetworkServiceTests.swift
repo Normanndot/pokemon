@@ -135,7 +135,7 @@ final class NetworkServiceTests: XCTestCase {
     func testFetchInvalidURLResponse() async throws {
         ///Arrange
         let session = URLSessionMock()
-        session.nextResponse = URLResponse( // This is not an HTTPURLResponse
+        session.nextResponse = URLResponse(
             url: URL(string: "https://example.com")!,
             mimeType: nil,
             expectedContentLength: 0,
