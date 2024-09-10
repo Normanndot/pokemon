@@ -26,15 +26,16 @@ struct PokemonListView: View {
                     )
                     List {
                         ForEach(viewModel.filteredPokemons) { aPokemon in
-                            NavigationLink {
-                                PokemonDetailView(pokemon: aPokemon)
-                            } label: {
+                            NavigationLink(value: aPokemon) {
                                 PokemonRow(pokemon: aPokemon)
                             }
                         }
                     }
                 }
                 .navigationTitle("Pokèmon")
+                .navigationDestination(for: Pokemon.self) { aPokemon in
+                    PokemonDetailView(pokemon: aPokemon)
+                }
             }
         case .failed:
             ContentUnavailableView(
